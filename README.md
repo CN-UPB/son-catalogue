@@ -1,5 +1,12 @@
 [![Build Status](http://jenkins.sonata-nfv.eu/buildStatus/icon?job=son-sdk-catalogue)](http://jenkins.sonata-nfv.eu/job/son-sdk-catalogue)
 
+# Attention: 
+```diff
+- SDK Catalogues is no longer supported!!! 
+On October 31th, milestone Y2B, SDK Catalogue was removed as a component from the Sonata SDK.
+For more information, please check "Issues" section.
+```
+
 # SDK Catalogues
 This repository contains the development for the SDK catalogues. It holds the API implementation of SDK catalogues for services and functions. Moreover, it is closely related to the [son-catalogue-repos](https://github.com/sonata-nfv/son-catalogue-repos) repository that holds the catalogues of the SONATA Service Platform as well at the [son-schema](https://github.com/sonata-nfv/son-schema) repository that holds the schema for the various descriptors, such as the VNFD and the NSD.
 
@@ -35,9 +42,32 @@ Ruby gems used (for more details see Gemfile in son-sdk-catalogues folder):
 You may contribute to the editor similar to other SONATA (sub-) projects, i.e. by creating pull requests.
 
 ## Installation
-Before installing the Catalogues API from source code, it is recommended to install a fresh MongoDB database. It can be done with the "installation_mongodb.sh" script provided in the root folder. This script installs MongoDB and uses the "dbs.js" script to build a database structure in the MongoDB for each catalogue. The default IP address for local development environment is 'localhost:27017'. However, if the MongoDB is already installed, "dbs.js" script can be used standalone, just follow the instructions inside the file. If the MongoDB is found remotely, then the "dbs.js" script needs to be changed according to the IP and Port address of the MongoDB.
+First step to install the Catalogues is to clone the source code from the repository.
+SDK Catalogue can be installed in two different ways: using Docker containers or without Docker.
 
-For the Catalogues, after cloning the source code from the repository, you can run:
+### Installing with Docker
+For this installation Docker Compose is first required. It is required to install Docker Engine in order to use Docker Compose. You can follow the instructions in https://docs.docker.com/compose/install/ to do so.
+Once this requirement is meet, you can start installation with the next command:
+
+```sh
+docker-compose up -d
+```
+
+### Installing without Docker
+Before running the Catalogues API from source code, it is recommended to install a fresh MongoDB database. It can be done with the "installation_mongodb.sh" script provided in the root folder. 
+
+```sh
+./installation_mongodb.sh
+```
+
+This script installs MongoDB and uses the "dbs.js" script to build a database structure in the MongoDB for each catalogue. The default IP address for local development environment is 'localhost:27017'. However, if the MongoDB is already installed, "dbs.js" script can be used standalone, just follow the instructions inside the file. If the MongoDB is found remotely, then the "dbs.js" script needs to be changed according to the IP and Port address of the MongoDB.
+Next step is to install dependencies required by the Catalogue API. Run "install_deps.sh" script found in the same folder to install Ruby required libraries.
+
+```sh
+./install_deps.sh
+```
+
+Once installed previous requirements, you can run to install required gems:
 
 ```sh
 bundle install
